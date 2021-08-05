@@ -70,11 +70,12 @@ export default {
               page
             })
             const { Search } = res.data
+            // imdbID로 고유화하는 코드 수정!
             commit('updateState', {
-              movies: [
+              movies: _uniqBy([
                 ...state.movies,
-                ..._uniqBy(Search, 'imdbID')
-              ]
+                ...Search
+              ], 'imdbID')
             })
           }
         }
